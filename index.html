@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#173a32">
+  <meta name="description" content="Legado que Ensina — Gestão psicopedagógica para professores e psicopedagogos.">
+  <title>Legado que Ensina - Gestão psicopedagógica</title>
+  <link rel="icon" type="image/jpeg" href="https://i.imgur.com/IzFWJCM.jpeg">
+  <link rel="shortcut icon" type="image/jpeg" href="https://i.imgur.com/IzFWJCM.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./dist/styles.css">
+<script>
+(function sanitizeCredentialQuery() {
+  try {
+    const url = new URL(window.location.href);
+    const secretNames = new Set(['password', 'passwd', 'pass', 'token', 'access_token', 'refresh_token']);
+    const hasSecret = [...url.searchParams.keys()].some((key) => secretNames.has(key.toLowerCase()));
+    if (!hasSecret) return;
+    for (const key of [...url.searchParams.keys()]) {
+      const lower = key.toLowerCase();
+      if (secretNames.has(lower) || lower === 'email' || lower === 'username') url.searchParams.delete(key);
+    }
+    const next = url.pathname + (url.search ? `?${url.searchParams.toString()}` : '') + url.hash;
+    window.history.replaceState(window.history.state, '', next);
+  } catch (error) {
+    console.warn('[Prisma] Não foi possível limpar parâmetros sensíveis da URL.', error);
+  }
+})();
+</script>
+</head>
+<body>
+  <div id="app-root">
+    <section id="auth-view" class="auth-shell" aria-label="Acesso profissional">
+      <div class="auth-story">
+        <div class="brand brand-light" aria-label="Legado que Ensina - Gestão psicopedagógica"><img class="brand-logo-image" src="https://i.imgur.com/5wYEiPo.png" alt="Logomarca Legado que Ensina"><span>Legado que Ensina<small>GESTÃO PSICOPEDAGÓGICA</small></span></div>
+        <div class="auth-story-copy">
+          <span class="eyebrow eyebrow-light">Cuidado, aprendizagem e desenvolvimento</span>
+          <h1>Uma visão mais clara de cada <em>trajetória.</em></h1>
+          <p>Organize a rotina, registre cada atendimento e acompanhe o desenvolvimento com um espaço de trabalho pensado para a prática profissional.</p>
+          <div class="auth-benefits">
+            <div><span><i data-lucide="users-round"></i></span><p><strong>Prontuários integrados</strong><small>Histórico, contexto e evolução em um só lugar.</small></p></div>
+            <div><span><i data-lucide="calendar-check"></i></span><p><strong>Rotina organizada</strong><small>Agenda, atendimento e planejamento.</small></p></div>
+            <div><span><i data-lucide="chart-no-axes-combined"></i></span><p><strong>Indicadores úteis</strong><small>Dados para apoiar decisões profissionais.</small></p></div>
+          </div>
+        </div>
+        <p class="auth-legal">LEGADO QUE ENSINA · Ambiente profissional para educadores e psicopedagogos</p>
+      </div>
+      <div class="auth-form-side">
+        <form id="login-form" class="auth-card">
+          <div class="auth-mobile-brand brand" aria-label="Legado que Ensina - Gestão psicopedagógica"><img class="brand-logo-image" src="https://i.imgur.com/5wYEiPo.png" alt="Logomarca Legado que Ensina"><span>Legado que Ensina<small>GESTÃO PSICOPEDAGÓGICA</small></span></div>
+          <span class="eyebrow">ESPAÇO PROFISSIONAL</span>
+          <h2>Bem-vindo(a) de volta</h2>
+          <p class="muted">Entre com as credenciais da sua conta para abrir seu espaço de trabalho.</p>
+          <label class="field"><span>E-mail profissional</span><input id="login-email" name="email" type="email" autocomplete="username" placeholder="voce@exemplo.com" required></label>
+          <label class="field"><span>Senha</span><input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Sua senha" required></label>
+          <div class="auth-options"><label class="check-label"><input id="remember-email" type="checkbox"> Lembrar e-mail neste dispositivo</label><button class="text-button" id="forgot-password" type="button">Esqueci a senha</button></div>
+          <button class="button button-primary button-wide" id="login-submit" type="submit"><i data-lucide="log-in"></i> Entrar na plataforma</button>
+          <div class="secure-note"><i data-lucide="shield-check"></i><span>Seus registros são carregados após a autenticação e filtrados pela sua conta.</span></div>
+        </form>
+      </div>
+    </section>
+
+    <div id="workspace" class="workspace is-hidden">
+      <aside id="sidebar" class="sidebar" aria-label="Navegação principal">
+        <div class="sidebar-brand brand brand-light" aria-label="Legado que Ensina - Gestão psicopedagógica"><img class="brand-logo-image" src="https://i.imgur.com/5wYEiPo.png" alt="Logomarca Legado que Ensina"><span>Legado que Ensina<small>GESTÃO PSICOPEDAGÓGICA</small></span></div>
+        <div class="sidebar-scroll">
+          <p class="nav-heading">VISÃO GERAL</p>
+          <nav class="nav-group" aria-label="Visão geral">
+            <button class="nav-item is-active" data-page="dashboard"><i data-lucide="layout-dashboard"></i><span>Visão clínica</span></button>
+          </nav>
+          <p class="nav-heading">PRÁTICA PROFISSIONAL</p>
+          <nav class="nav-group" aria-label="Prática profissional">
+            <button class="nav-item" data-page="students"><i data-lucide="users-round"></i><span>Alunos e prontuários</span></button>
+            <button class="nav-item" data-page="agenda"><i data-lucide="calendar-days"></i><span>Agenda e atendimentos</span></button>
+            <button class="nav-item" data-page="muralia"><i data-lucide="message-circle-heart"></i><span>Muralia</span></button>
+            <button class="nav-item" data-page="evaluations"><i data-lucide="clipboard-check"></i><span>Avaliações</span></button>
+
+            <button class="nav-item" data-page="interventions"><i data-lucide="notebook-pen"></i><span>Intervenções</span></button>
+            <button class="nav-item" data-page="bncc"><i data-lucide="book-open-check"></i><span>BNCC e currículo</span></button>
+            <button class="nav-item" data-page="activities"><i data-lucide="printer"></i><span>Atividades</span></button>
+          </nav>
+          <p class="nav-heading">GESTÃO DO ESPAÇO</p>
+          <nav class="nav-group" aria-label="Gestão">
+            <button class="nav-item" data-page="finance"><i data-lucide="wallet-cards"></i><span>Financeiro</span></button>
+            <button class="nav-item" data-page="recommended"><i data-lucide="sparkles"></i><span>Recomendados</span></button>
+            <button class="nav-item" data-page="waitlist"><i data-lucide="list-ordered"></i><span>Fila de espera</span></button>
+            <button class="nav-item" data-page="documents"><i data-lucide="files"></i><span>Modelos e documentos</span></button>
+          </nav>
+          <p class="nav-heading">CONFIGURAÇÕES</p>
+          <nav class="nav-group" aria-label="Configurações">
+            <button class="nav-item" data-page="profile"><i data-lucide="user-round-cog"></i><span>Perfil do professor</span></button>
+            <button class="nav-item is-hidden" id="master-nav" data-page="admin"><i data-lucide="shield-check"></i><span>Administração</span></button>
+          </nav>
+        </div>
+        <div class="sidebar-footer">
+          <div class="sidebar-person"><span id="sidebar-avatar" class="avatar">P</span><span class="sidebar-person-copy"><strong id="sidebar-name">Profissional</strong><small id="sidebar-role">Área profissional</small></span><button class="icon-button icon-button-dark" id="sidebar-profile" aria-label="Abrir perfil"><i data-lucide="settings-2"></i></button></div>
+          <button class="sidebar-logout" id="logout-button"><i data-lucide="log-out"></i><span>Sair da plataforma</span></button>
+        </div>
+      </aside>
+      <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+      <main class="main-area">
+        <header class="topbar">
+          <div class="topbar-left"><button class="icon-button mobile-menu-button" id="mobile-menu" aria-label="Abrir menu"><i data-lucide="menu"></i></button><div><div class="topbar-context">ESPAÇO DE TRABALHO</div><h2 id="page-title">Visão clínica</h2></div></div>
+          <div class="topbar-actions"><span id="topbar-date" class="topbar-date"></span><span class="topbar-divider"></span><button class="icon-button topbar-profile" id="topbar-profile" aria-label="Meu perfil"><i data-lucide="user-round"></i></button></div>
+        </header>
+        <div id="page-content" class="page-content" tabindex="-1"></div>
+        <footer class="app-footer"><span>LEGADO QUE ENSINA · Gestão psicopedagógica</span><span>Seus dados profissionais, organizados com cuidado.</span></footer>
+      </main>
+    </div>
+    <div id="modal-root"></div>
+    <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+  </div>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+<script type="importmap">{"imports":{"@supabase/supabase-js":"https://esm.sh/@supabase/supabase-js@2.57.0"}}</script>
+<script src="./config.js"></script>
+<script type="module" src="./dist/bundle.js"></script>
+</body>
+</html>
